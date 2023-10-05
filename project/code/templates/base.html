@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            min-height: 100vh;
+            background: url("/static/images/bgs.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 99
+        }
+
+        .logo {
+            font-size: 3em;
+            color: #fff;
+            user-select: none;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #fcfc03);
+            line-height :0.70em;
+            outline: none;
+            animation: animate 7s linear infinite;
+            }
+
+        @keyframes animate {
+            0%, 18%, 20%, 50.1%, 60%, 60.5%, 80%, 90.1%, 92% {
+            color: #02f6c5;
+            text-shadow: none;
+            }   
+            18.1%, 20.1%, 30%, 50%, 80.1%, 90%, 92.1%, 100% {
+            color: #02353a;
+            text-shadow: 0 0 10px #f7fcfc,
+            0 0 20px #07ffde,
+            0 0 40px #07ffde,
+            0 0 80px #07ffde,
+            0 0 160px #07ffde,
+            0 0 10px #07ffde;
+            }
+        }
+
+        .navigation a {
+            position: relative;
+            font-size: 1.5em;
+            color: #fdfbfb;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bolder;
+            margin-left: 40px;
+        }
+        .navigation a::after{
+            content:"";
+            position:absolute;
+            font-size: 1.5em;
+            left:0;
+            bottom:-6px;
+            width:100%;
+            height:3px;
+            background: #fff;
+            border-radius: 5px;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .5s;
+        }
+        .navigation a:hover::after{
+            transform-origin: left;
+            transform: scaleX(1);
+
+        }
+/* 
+        /* .navigation .btnlogin-popup {
+            width: 130px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #fff;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: 500;
+            margin-left: 40px;
+            transition:.5s;
+        }
+        .navigation .btnlogin-popup:hover{
+            background:#fff;
+            color: #161616; 
+        }*/
+
+
+    
+   
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .media{
+            position: absolute;
+            top: 15%;
+            left:77%;
+            transform:translate(-53% ,-50%);
+            color:white;
+        }
+        li{
+            list-style: none;
+            margin:10px 15px;
+            display:inline-block;
+            font-size:30px;
+            padding:12px 12px;
+            color:#000000;
+            /* border:2px solid #160202;
+            border-radius: 50%; */
+            transition: .5s;
+        }
+        li i {
+            color: #000703;
+        }
+        li:hover{
+            color: #21b9f0;
+            border: 1 px solid #8eecf4;
+            transition: .5s;
+        }
+        /* .r1{
+            width:2vw;
+            height:1vh;
+            position: absolute;
+        }
+        .r2{
+            width:2vw;
+            height:1vh;
+        }
+        .r3{
+            width:2vw;
+            height:1vh;
+        }
+        .r4{
+            width:2vw;
+            height:1vh;
+        } */
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% block css %}{% endblock %}
+    
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Car Parking</h2>
+        <nav class="navigation">
+            <a href="/home">Home</a>
+            <a href="/about">About us</a>
+            <a href="/contact">Contact</a>
+            <!-- <button class="btnlogin-popup" onclick="Location.href="/login">Login</button> -->
+           {% if not session.isauth %}
+           <a href="/signup">Register</a>
+           <a href="/">Login</a>  
+           {% else %}
+           <a href="/logout">logout</a>
+           {% endif %}
+           
+        </nav>
+    </header>
+    <div class="">
+        <div class="media">
+            <ul>
+                <li><a href="https://facebook.com">
+                    <i class="fa-brands fa-facebook"></i>
+                </a></li>
+                <li><a href="https://instagram.com">
+                    <i class="fa-brands fa-instagram"></i>
+                </a></li>
+                <li><a href="https://watsapp.com">
+                    <i class="fa-brands fa-whatsapp"></a></i></li>
+                <li><a href="https://twitter.com">
+                    <i class="fa-brands fa-twitter"></i>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div id="carouselExampleFade" class="carousel slide carousel-fade " data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="static/images/cars.jpg" class="d-block w-100" data-bs-interval="1000" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="static/images/car1.jpg" class="d-block w-100" alt="..." data-bs-interval="1000">
+          </div>
+          <div class="carousel-item">
+            <img src="static/images/car2.jpg" class="d-block w-100" alt="..." data-bs-interval="1000">
+          </div>
+          <div class="carousel-item">
+            <img src="static/images/car3.jpg" class="d-block w-100" alt="..." data-bs-interval="1000">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div> -->
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+    {% block js %}{% endblock %}
+    
+    
+</body>
+
+</html>
